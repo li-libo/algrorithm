@@ -15,7 +15,7 @@ public class AvlTreeDemo {
         // 开始前序遍历
         avlTree.preOrderPrint();
         boolean isAvlTreeFlag = avlTree.getRightHeight() - avlTree.getLeftHeight() <= 1 && avlTree.getLeftHeight() - avlTree.getRightHeight() <= 1;
-        // 输出🌲的高度
+        // 输出树的高度
         System.out.println(String.format(format, avlTree.getHeight(), avlTree.getLeftHeight(), avlTree.getRightHeight(), isAvlTreeFlag));
     }
 

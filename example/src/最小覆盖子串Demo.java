@@ -11,6 +11,7 @@ import java.util.Map;
  * 示例 1：
  * 输入：s = "ADOBECODEBANC", t = "ABC"
  * 输出："BANC"
+ *
  * @author lilibo
  * @create 2022-03-07 11:21 PM
  */
@@ -28,11 +29,11 @@ public class 最小覆盖子串Demo {
         Map<Character, Integer> windowMap = new HashMap<>();
         char[] targetChars = target.toCharArray();
         char[] sourceChars = source.toCharArray();
-        for(char c : targetChars) {
+        for (char c : targetChars) {
             needMap.compute(c, (k, v) -> {
-                if(v == null) {
+                if (v == null) {
                     return 1;
-                }else {
+                } else {
                     return v + 1;
                 }
             });
@@ -47,15 +48,15 @@ public class 最小覆盖子串Demo {
             // 右移窗口
             right++;
             // 进行窗口内数据的一系列更新
-            if(needMap.containsKey(c)){
+            if (needMap.containsKey(c)) {
                 windowMap.compute(c, (k, v) -> {
-                    if(v == null) {
+                    if (v == null) {
                         return 1;
-                    }else {
+                    } else {
                         return v + 1;
                     }
                 });
-                if(windowMap.get(c).equals(needMap.get(c))) {
+                if (windowMap.get(c).equals(needMap.get(c))) {
                     valid++;
                 }
             }
@@ -64,7 +65,7 @@ public class 最小覆盖子串Demo {
             // 判断左侧窗口是否需要收缩
             while (valid == needMap.size()) {
                 // 在这里更新最小覆盖子串
-                if(right - left < len) {
+                if (right - left < len) {
                     start = left;
                     len = right - left;
                 }
@@ -73,8 +74,8 @@ public class 最小覆盖子串Demo {
                 // 左移串口
                 left++;
                 // 进行窗口内数据更新
-                if(needMap.containsKey(d)) {
-                    if(windowMap.get(d).equals(needMap.get(d))) {
+                if (needMap.containsKey(d)) {
+                    if (windowMap.get(d).equals(needMap.get(d))) {
                         valid--;
                     }
                     windowMap.put(d, windowMap.get(d) - 1);
